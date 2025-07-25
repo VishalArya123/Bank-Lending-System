@@ -12,6 +12,7 @@ const LoanForm = () => {
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const API = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +21,7 @@ const LoanForm = () => {
     setResult(null);
 
     try {
-      const response = await axios.post('http://localhost:3000/api/v1/loans', {
+      const response = await axios.post(`${API}/loans`, {
         ...formData,
         loan_amount: parseFloat(formData.loan_amount),
         loan_period_years: parseInt(formData.loan_period_years),

@@ -11,6 +11,7 @@ const PaymentForm = () => {
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const API = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +21,7 @@ const PaymentForm = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:3000/api/v1/loans/${formData.loan_id}/payments`,
+        `${API}/loans/${formData.loan_id}/payments`,
         {
           amount: parseFloat(formData.amount),
           payment_type: formData.payment_type

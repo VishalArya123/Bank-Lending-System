@@ -7,6 +7,7 @@ const LoanLedger = () => {
   const [ledger, setLedger] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const API = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +16,7 @@ const LoanLedger = () => {
     setLedger(null);
 
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/loans/${loanId}/ledger`);
+      const response = await axios.get(`${API}/loans/${loanId}/ledger`);
       setLedger(response.data);
     } catch (err) {
       setError(err.response?.data?.error || 'An error occurred');

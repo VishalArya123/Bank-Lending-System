@@ -7,6 +7,7 @@ const CustomerOverview = () => {
   const [overview, setOverview] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const API = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +16,7 @@ const CustomerOverview = () => {
     setOverview(null);
 
     try {
-      const response = await axios.get(`http://localhost:3000/api/v1/customers/${customerId}/overview`);
+      const response = await axios.get(`${API}/customers/${customerId}/overview`);
       setOverview(response.data);
     } catch (err) {
       setError(err.response?.data?.error || 'An error occurred');
